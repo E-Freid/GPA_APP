@@ -53,24 +53,34 @@ nav ul li a:hover {
 
 /* Main content styling */
 main {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 40px;
-	background-color: #BDCDD6;
-	border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-main h2 {
-	font-size: 32px;
-	margin-bottom: 20px;
-	color: #6096B4;
+h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 30px;
 }
 
-main p {
-	line-height: 1.5;
-	margin-bottom: 20px;
-	color: #333;
+p {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 20px;
 }
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 /* Footer styling */
 footer {
