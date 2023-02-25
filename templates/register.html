@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Register</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+	</head>
+	<body>
+		<header>
+			<a href="{{ url_for('index') }}"><h1>Academic Course Tracker</h1></a>
+<nav>
+    <ul>
+        {% if session.logged_in %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+		<li><a href="{{ url_for('courses') }}">Courses</a></li>
+    </ul>
+</nav>
+        </header>
+
+		<main>
+			<h2>Register</h2>
+			<form action="/register" method="POST">
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" required>
+				<button type="submit">Register</button>
+			</form>
+			{% if response %}
+				<p>{{ response }}</p>
+			{% endif %}
+			<p>Already registered? <a href="{{ url_for('login') }}">Click here to login</a>.</p>
+		</main>
+
+<footer>
+    <p>Academic Course Tracker &copy; 2023 | Created by Eli Freid | <a href="https://www.linkedin.com/in/eli-freid-061b8b206/">LinkedIn</a></p>
+</footer>
+
+	</body>
+</html>

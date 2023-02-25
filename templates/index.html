@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Academic Tracker</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+	<header>
+			<a href="{{ url_for('index') }}"><h1>Academic Course Tracker</h1></a>
+<nav>
+    <ul>
+        {% if session.logged_in %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+		<li><a href="{{ url_for('courses') }}">Courses</a></li>
+    </ul>
+</nav>
+        </header>
+
+	<main>
+		<h2>Welcome to Academic Tracker</h2>
+		<p>Academic Tracker is a simple web application that allows you to track your academic courses and calculate your GPA.</p>
+		<p>With Academic Tracker, you can easily add your courses, including the course name, course grade, and number of credit hours. The app will then calculate your GPA based on the courses you've added.</p>
+		<p>To get started, simply create an account and start adding your courses!</p>
+	</main>
+
+<footer>
+    <p>Academic Course Tracker &copy; 2023 | Created by Eli Freid | <a href="https://www.linkedin.com/in/eli-freid-061b8b206/">LinkedIn</a></p>
+</footer>
+</body>
+</html>

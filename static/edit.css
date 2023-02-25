@@ -1,0 +1,33 @@
+/* Style for the edit form */
+.edit-form label {
+  display: inline-block;
+  width: 80px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.edit-form input[type=text] {
+  display: block;
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.edit-form button[type=submit] {
+  display: block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.edit-form button[type=submit]:hover {
+  background-color: #3e8e41;
+}
