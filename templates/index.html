@@ -6,16 +6,16 @@
 </head>
 <body>
 	<header>
-			<a href="{{ url_for('index') }}"><h1>Academic Course Tracker</h1></a>
+			<a href="{{ url_for('index', _external=True) }}"><h1>Academic Course Tracker</h1></a>
 <nav>
     <ul>
         {% if session.logged_in %}
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li><a href="{{ url_for('logout', _external=True) }}">Logout</a></li>
         {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login', _external=True) }}">Login</a></li>
+            <li><a href="{{ url_for('register', _external=True) }}">Register</a></li>
         {% endif %}
-		<li><a href="{{ url_for('courses') }}">Courses</a></li>
+		<li><a href="{{ url_for('courses', _external=True) }}">Courses</a></li>
     </ul>
 </nav>
         </header>
