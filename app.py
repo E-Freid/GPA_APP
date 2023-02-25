@@ -12,8 +12,8 @@ def handle_course_response(response):
     status_code = response.status_code
     if status_code == 401:
         session.clear()
-        return redirect(url_for("login"))
-    return redirect(url_for("courses"))
+        return redirect(url_for("login", _external=True),)
+    return redirect(url_for("courses", _external=True))
 
 
 def create_app():
@@ -44,7 +44,7 @@ def create_app():
             if response.status_code == 200:
                 session["logged_in"] = True
                 session["access_token"] = response.json()["access_token"]
-                return redirect(url_for("courses"))
+                return redirect(url_for("courses", _external=True))
             else:
                 return render_template("login.html", response=response.json()["error"])
 
@@ -60,7 +60,7 @@ def create_app():
             data = {"email": email, "password": password}
             response = requests.post(f"{api_url}/register", json=data)
             if response.status_code == 201:
-                return redirect(url_for("courses"))
+                return redirect(url_for("courses", _external=True))
             return render_template("register.html", response=response.json()["message"])
 
 
@@ -74,7 +74,7 @@ def create_app():
             session.clear()
             message = "Logged out successfully."
         session["response"] = message
-        return redirect(url_for("login"))
+        return redirect(url_for("login", _external=True))
 
 
     """ COURSES ENDPOINTS """
@@ -110,7 +110,7 @@ def create_app():
                 session.clear()
         if "edit_mode" in session:
             session.pop("edit_mode", None)
-        return redirect(url_for("login"))
+        return redirect(url_for("login", _external=True))
 
 
 
@@ -125,7 +125,7 @@ def create_app():
             data = {"name": name, "grade": grade, "points": points}
             response = requests.post(f"{api_url}/user/course", headers=headers, json=data)
             return handle_course_response(response)
-        return redirect(url_for("login"))
+        return redirect(url_for("login", _external=True))
 
 
     @app.route("/delete_course/<int:course_id>", methods=['POST'])
@@ -135,7 +135,7 @@ def create_app():
             headers = {"Authorization": f"Bearer {access_token}"}
             response = requests.delete(f"{api_url}/user/course/{course_id}", headers=headers)
             return handle_course_response(response)
-        return redirect(url_for("login"))
+        return redirect(url_for("login", _external=True))
 
 
     @app.route("/edit_course/<int:course_id>", methods=['POST'])
@@ -143,8 +143,8 @@ def create_app():
         if "logged_in" in session:
             session["edit_mode"] = True
             session["edit_course_id"] = course_id
-            return redirect(url_for("courses"))
-        return redirect(url_for("login"))
+            return redirect(url_for("courses", _external=True))
+        return redirect(url_for("login", _external=True))
 
 
     @app.route("/update_course/<int:course_id>", methods=['POST'])
@@ -158,6 +158,6 @@ def create_app():
             data = {"name": name, "grade": grade, "points": points}
             response = requests.put(f"{api_url}/user/course/{course_id}", headers=headers, json=data)
             handle_course_response(response)
-        return redirect(url_for("login"))
+        return redirect(url_for("login", _external=True))
 
     return app
