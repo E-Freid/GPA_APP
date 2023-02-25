@@ -12,7 +12,7 @@ def handle_course_response(response):
     status_code = response.status_code
     if status_code == 401:
         session.clear()
-        return redirect(url_for("login", _external=True),)
+        return redirect(url_for("login", _external=True))
     return redirect(url_for("courses", _external=True))
 
 
@@ -157,7 +157,7 @@ def create_app():
             points = request.form["points"]
             data = {"name": name, "grade": grade, "points": points}
             response = requests.put(f"{api_url}/user/course/{course_id}", headers=headers, json=data)
-            handle_course_response(response)
+            return handle_course_response(response)
         return redirect(url_for("login", _external=True))
 
     return app
